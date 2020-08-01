@@ -7,29 +7,6 @@ It has three major parts:
 * the client side, which runs using javascript in your browser
 * the database side, which runs using Redis
 
-Browser Support
----------------
-
-* Firefox - Works well.
-* Chrome - Works well.
-* Chromium - Works well.
-* Opera 15.x - Works well.
-* Opera 12.16 - Background music doesn't play.  Everything else works (Very slow though).
-* Safari 6.x - Background music doesn't play.  Everything else works well.
-* IE 10.x - Doesn't work.  Other versions untested.
-
-How to get it going
--------------------
-
-Getting the server up and running is pretty easy. You need to have the following installed:
-
-* Node.js ← Versions 0.8.x-0.10.x work.  **Do not use 0.6.x, it [does not work](https://github.com/senchalabs/connect/issues/858).**
-* gcc-c++ ← optional.  Not needed on windows.
-* GNU make ← optional.  Not needed on windows.
-* Memcached ← optional. This is needed to enable metrics.
-* zlib-devel ← this is the Fedora/RHEL package name, others may be sightly different.  Not needed on windows.
-* Redis server ← this is needed for the game to connect to the backend database.
-
 Ubuntu / Windows
 ------
 
