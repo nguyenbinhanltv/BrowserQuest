@@ -1,10 +1,6 @@
 BrowserQuest
 ============
 
-[![Build Status](https://travis-ci.org/browserquest/BrowserQuest.png)](https://travis-ci.org/browserquest/BrowserQuest) [![Dependency Status](https://gemnasium.com/browserquest/BrowserQuest.png)](https://gemnasium.com/browserquest/BrowserQuest)
-
-[BrowserQuest](http://browserquest-teambq.rhcloud.com:8000) is a HTML5/JavaScript multiplayer game experiment.
-
 It has three major parts:
 
 * the server side, which runs using Node.js
@@ -34,7 +30,7 @@ Getting the server up and running is pretty easy. You need to have the following
 * zlib-devel ← this is the Fedora/RHEL package name, others may be sightly different.  Not needed on windows.
 * Redis server ← this is needed for the game to connect to the backend database.
 
-Ubuntu
+Ubuntu / Windows
 ------
 
     $ sudo apt-get update
@@ -45,7 +41,7 @@ Ubuntu
 
 Clone the git repo:
 
-    $ git clone git://github.com/browserquest/BrowserQuest.git
+    $ git clone https://github.com/nguyenbinhanltv/BrowserQuest.git
     $ cd BrowserQuest
 
 Then install the Node.js dependencies by running:
@@ -53,7 +49,9 @@ Then install the Node.js dependencies by running:
     $ npm config set registry http://registry.npmjs.org/
     $ npm install -d
     
-Before starting the BrowserQuest server, you must start Redis. In Windows, you can simply run `redis-server.exe` in your `redis\bin\release` directory.
+Before starting the BrowserQuest server, you must start Redis. In Windows, you can simply run `redis-server.exe`.
+Download Redis here:
+    $ https://github.com/dmajkic/redis/downloads
 
 Then start the server by running:
 
@@ -75,78 +73,6 @@ That means its working.  There should not be any warnings or errors.
 
 Using a browser, connect to port 8000 of the server entered above.  The
 BrowserQuest start page should appear, and the game should work.
-
-Mac OS X
---------
-
-Node.js, Memcached, and Redis installed through Homebrew are known to work:
-
-    $ brew install node redis memcached
-    $ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-    $ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-    $ git clone git://github.com/browserquest/BrowserQuest.git
-    $ cd BrowserQuest
-    $ npm install -d
-    $ node server/js/main.js
-
-Or you can download the latest Redis source from http://redis.io/download
-
-    $ tar xzf redis-<version>.tar.gz
-    $ cd redis-<version>
-    $ make
-
-To start Redis now, you can simply run:
-
-    $ src/redis-server
-
-You can try interacting with it by starting another terminal and typing:
-
-    $ redis-<version>/src/redis-cli
-    redis> set foo bar
-    OK
-    redis> get foo
-    "bar"
-
-Node.js, Memcached, and Redis for Fedora 16+ and RHEL/CentOS/SL 6.x
--------------------------------------------------------------------
-
-On Fedora 16+ and RHEL/CentOS/SL 6.x, you can install Redis (required) and Memcached (optional) using
-yum.
-
-For just RHEL/CentOS/SL 6.x, you need to add the EPEL repo first.  Not needed for Fedora:
-
-    $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-
-Then install Node.js and everything else needed:
-
-    $ sudo yum install zlib-devel gcc gcc-c++ autoconf automake make redis nodejs npm memcached
-    $ sudo chkconfig redis on
-    $ sudo chkconfig memcached on
-
-Start Redis and Memcached by running:
-
-    $ sudo service redis start
-    $ sudo service memcached start
-
-Now continue on with the normal steps to clone the BrowserQuest git repo, and start up BrowserQuest:
-
-    $ git clone git://github.com/browserquest/BrowserQuest.git
-    $ cd BrowserQuest
-    $ npm install -d
-    $ node server/js/main.js
-
-Windows
--------
-
-Windows 8 is known to work ok with just the base Node v0.8.18
-installed, without Visual Studio, nor Python, nor the native
-extensions for npm modules installed.
-
-You can download an experimental Win32/64 version of Redis
-from here: http://redis.io/download
-
-You can download the latest version of Memcached for Win32/64 from here:
-http://blog.elijaa.org/index.php?post/2010/10/15/Memcached-for-Windows&similar
 
 Deploying BrowserQuest
 ----------------------
@@ -240,66 +166,3 @@ In this case, your REDIS_HOST is `something.redistogo.com`, your REDIS_PORT is `
     
 
 Congratulations! You have now deployed BrowserQuest to Heroku! To open BrowserQuest in your browser, run `heroku open`.
-
-
-Documentation
--------------
-
-Lots of useful info on the [wiki](https://github.com/browserquest/BrowserQuest/wiki).
-
-Mailing List
-------------
-
-The new mailing list for development is [here](https://mail.mozilla.org/listinfo/browserquest). ([archives](https://mail.mozilla.org/pipermail/browserquest/))
-
-The old mailing list on librelist.com is no longer used.  Its archives are online [here](http://librelist.com/browser/browserquest/).
-
-IRC Channel
------------
-
-\#browserquest on irc.mozilla.org
-
-License
--------
-
-Code is licensed under MPL 2.0. Content is licensed under CC-BY-SA 3.0.
-See the LICENSE file for details.
-
-Credits
--------
-Originally created by [Little Workshop](http://www.littleworkshop.fr):
-
-* Franck Lecollinet - [@whatthefranck](http://twitter.com/whatthefranck)
-* Guillaume Lecollinet - [@glecollinet](http://twitter.com/glecollinet)
-
-All of the music in BrowserQuest comes from Creative Commons [Attribution 3.0 Unported (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/) sources.
-
-* [Aaron Krogh](http://soundcloud.com/aaron-anderson-11) - [beach](http://soundcloud.com/aaron-anderson-11/310-world-map-loop)
-* [Terrel O'Brien](http://soundcloud.com/gyrowolf) - [boss](http://soundcloud.com/gyrowolf/gyro-scene001-ogg), [cave](http://soundcloud.com/gyrowolf/gyro-dungeon004-ogg), [desert](http://soundcloud.com/gyrowolf/gyro-dungeon003-ogg), [lavaland](http://soundcloud.com/gyrowolf/gyro-scene002-ogg)
-* [Dan Tilden](http://www.dantilden.com) - [forest](http://soundcloud.com/freakified/what-dangers-await-campus-map)
-* [Joel Day](http://blog.dayjo.org) - [village](http://blog.dayjo.org/?p=335)
-
-Many other people are contributing through GitHub:
-
-* Myles Recny [@mkrecny](https://github.com/mkrecny)
-* Ben Noordhuis [@bnoordhuis](https://github.com/bnoordhuis)
-* Taylor Fausak [@tfausak](https://github.com/tfausak)
-* William Bowers [@willurd](https://github.com/willurd)
-* Steve Gricci [@sgricci](https://github.com/sgricci)
-* Dave Eddy [@bahamas10](https://github.com/bahamas10)
-* Mathias Bynens [@mathiasbynens](https://github.com/mathiasbynens)
-* Rob McCann [@unforeseen](https://github.com/unforeseen)
-* Scott Noel-Hemming [@frogstarr78](https://github.com/frogstarr78)
-* Kornel Lesiński [@pornel](https://github.com/pornel)
-* Korvin Szanto [@KorvinSzanto](https://github.com/KorvinSzanto)
-* Jeff Lang [@jeffplang](https://github.com/jeffplang)
-* Tom McKay [@thomasmckay](https://github.com/thomasmckay)
-* Justin Clift [@justinclift](https://github.com/justinclift)
-* Brynn Bateman [@brynnb](https://github.com/brynnb)
-* Dylen Rivera [@dylenbrivera](https://github.com/dylenbrivera)
-* Mathieu Loiseau [@lzbk](https://github.com/lzbk)
-* Jason Culwell [@Mawgamoth](https://github.com/Mawgamoth)
-* Bryan Biedenkapp [@gatekeep](https://github.com/gatekeep)
-* Aaron Hill [@Aaron1011](https://github.com/Aaron1011)
-* Fredrik Svantes [@speedis](https://github.com/speedis)
-* Sergey Krilov [@sergkr](https://github.com/sergkr)
