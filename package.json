@@ -8,10 +8,13 @@
   "dependencies": {
     "bcrypt": ">=0",
     "bison": "~1.1.1",
-    "connect": "~3.3.3",
+    "connect": "^3.7.0",
     "log": "~1.4.0",
     "memcache": "~0.3.0",
     "morgan": "^1.5.0",
+    "node": "^14.5.0",
+    "node-gyp": "^7.0.0",
+    "npm": "^6.14.7",
     "redis": ">=0",
     "requirejs": ">=2",
     "sanitizer": "~0.1.2",
@@ -29,7 +32,7 @@
     "test": "make test"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "12.x.x",
+    "npm": "6.x.x"
   }
 }
