@@ -32,7 +32,6 @@
     "start": "node server.js",
     "test": "make test"
   },
-  "main": "server.js",
   "engines": {
     "node": "12.x.x",
     "npm": "6.x.x"
