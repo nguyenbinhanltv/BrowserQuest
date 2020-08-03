@@ -29,7 +29,8 @@
     "sinon": ">=1"
   },
   "scripts": {
-    "test": "node server/js/main.js"
+    "start": "node server/js/main.js",
+    "test": "make test"
   },
   "engines": {
     "node": "12.x.x",
