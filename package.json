@@ -29,10 +29,10 @@
     "sinon": ">=1"
   },
   "scripts": {
-    "start": "node server/js/main.js",
+    "start": "node server.js",
     "test": "make test"
   },
-  "main": "server/js/main.js",
+  "main": "./server/js/main.js",
   "engines": {
     "node": "12.x.x",
     "npm": "6.x.x"

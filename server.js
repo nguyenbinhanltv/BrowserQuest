@@ -1,1 +1,2 @@
-server/js/main.js
+const server = require('server/js/main.js');
+server();
