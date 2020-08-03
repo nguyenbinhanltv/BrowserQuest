@@ -75,7 +75,7 @@ Currently, BrowserQuest can run on the following PAAS (Platform as a Service) pr
 
 4. Add the BrowserQuest repository, and pull its contents with the following commands:
 
-        $ git remote add github https://github.com/browserquest/BrowserQuest.git
+        $ git remote add github https://github.com/nguyenbinhanltv/BrowserQuest.git
         $ git fetch github
         $ git reset --hard github/master
         
