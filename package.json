@@ -28,8 +28,9 @@
     "should": ">=1",
     "sinon": ">=1"
   },
+  "main": "server/js/main.js",
   "scripts": {
-    "start": "node /app/server/main.js",
+    "start": "node .",
     "test": "make test"
   },
   "engines": {
