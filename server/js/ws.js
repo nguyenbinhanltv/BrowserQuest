@@ -8,8 +8,8 @@ var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
 
-var key = '../openssl/privateKey.pem';
-var cert = '../openssl/certificate.pem';
+var key = './privateKey.key';
+var cert = './certificate.crt';
 
 var WS = {};
 
@@ -220,7 +220,7 @@ WS.WebsocketServer = Server.extend({
             });
         }
 
-        this._ioServer = new socketio(this._httpsServer);
+        this._ioServer = new socketio(this._httpsServer(options));
         this._ioServer.on('connection', function webSocketListener(socket) {
             log.info('Client socket connected from ' + socket.conn.remoteAddress);
             // Add remoteAddress property
