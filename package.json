@@ -29,7 +29,7 @@
     "test": "make test"
   },
   "engines": {
-    "node": "8",
+    "node": "0.10.x",
     "npm": "1.2.x"
   }
 }
