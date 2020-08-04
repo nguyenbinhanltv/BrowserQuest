@@ -8,15 +8,13 @@ var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
 
-var openSsl = require('./openssl');
-
 var WS = {};
 
 module.exports = WS;
 
 var options = {
-    key: fs.readFileSync(openSsl.key),
-    cert: fs.readFileSync(openSsl.cert)
+    key: fs.readFileSync('./openssl/privateKey.key').toString(),
+    cert: fs.readFileSync('./openssl/certificate.crt').toString()
 };
 
 /**
@@ -199,12 +197,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpsServer = https.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpsServer = https.createServer(options = options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpsServer = https.createServer(options, function statusListener(request, response) {
+            this._httpsServer = https.createServer(options = options, function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
@@ -298,7 +296,6 @@ WS.socketioConnection = Connection.extend({
 // Sends a file to the client
 function sendFile (file, response, log) {
     try {
-        var fs = require('fs');
         var realFile = fs.readFileSync(__dirname + '/../../shared/' + file);
         var responseHeaders = {
             'Content-Type': 'text/javascript',
