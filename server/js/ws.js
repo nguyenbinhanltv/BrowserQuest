@@ -7,13 +7,17 @@ var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
+
+var key = '../openssl/privateKey.pem';
+var cert = '../openssl/certificate.pem';
+
 var WS = {};
 
 module.exports = WS;
 
 var options = {
-    key: fs.readFileSync('../../openssl/privateKey.key').toString(),
-    cert: fs.readFileSync('../../openssl/certificate.crt').toString()
+    key: fs.readFileSync(key).toString(),
+    cert: fs.readFileSync(cert).toString()
 };
 
 /**
@@ -196,12 +200,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpServer = https.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpsServer = https.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpServer = https.createServer(options, function statusListener(request, response) {
+            this._httpsServer = https.createServer(options, function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
@@ -211,12 +215,12 @@ WS.WebsocketServer = Server.extend({
                 }
                 response.end();
             });
-            this._httpServer.listen(port, this.ip || undefined, function serverOnlyListening() {
+            this._httpsServer.listen(port, this.ip || undefined, function serverOnlyListening() {
                 log.info('Server (only) is listening on port ' + port);
             });
         }
 
-        this._ioServer = new socketio(this._httpServer);
+        this._ioServer = new socketio(this._httpsServer);
         this._ioServer.on('connection', function webSocketListener(socket) {
             log.info('Client socket connected from ' + socket.conn.remoteAddress);
             // Add remoteAddress property
