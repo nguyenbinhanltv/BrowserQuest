@@ -7,15 +7,18 @@ var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
+var openssl = require('openssl-nodejs');
 
 var WS = {};
 
 module.exports = WS;
 
-var options = {
-    key: fs.readFileSync('./openssl/privateKey.key').toString(),
-    cert: fs.readFileSync('./openssl/certificate.crt').toString()
-};
+// var options = {
+//     key: fs.readFileSync('./openssl/privateKey.key').toString(),
+//     cert: fs.readFileSync('./openssl/certificate.crt').toString()
+// };
+
+var options = openssl('openssl req -config csr.cnf -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout key.key -out certificate.crt');
 
 /**
  * Abstract Server and Connection classes
