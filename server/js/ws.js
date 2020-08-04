@@ -8,16 +8,15 @@ var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
 
-var key = require('./privateKey.key');
-var cert = require('./certificate.crt');
+var openSsl = require('./openssl');
 
 var WS = {};
 
 module.exports = WS;
 
 var options = {
-    key: fs.readFileSync(key).toString(),
-    cert: fs.readFileSync(cert).toString()
+    key: fs.readFileSync(openSsl.key),
+    cert: fs.readFileSync(openSsl.cert)
 };
 
 /**
