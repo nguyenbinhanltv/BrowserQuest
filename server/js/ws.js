@@ -8,8 +8,8 @@ var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
 
-var key = './privateKey.key';
-var cert = './certificate.crt';
+var key = require('./privateKey.key');
+var cert = require('./certificate.crt');
 
 var WS = {};
 
