@@ -7,7 +7,6 @@ var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
-var openssl = require('openssl-nodejs');
 
 var WS = {};
 
