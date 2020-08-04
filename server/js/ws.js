@@ -199,12 +199,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpsServer = https.createServer( app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpsServer = https.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpsServer = https.createServer( function statusListener(request, response) {
+            this._httpsServer = https.createServer(options, function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
