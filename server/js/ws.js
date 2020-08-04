@@ -2,7 +2,7 @@ var _ = require('underscore');
 var BISON = require('bison');
 var useBison = false;
 var cls = require('./lib/class');
-var http = require('http');
+var https = require('https');
 var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
@@ -196,12 +196,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpServer = http.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpServer = https.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpServer = http.createServer(options, function statusListener(request, response) {
+            this._httpServer = https.createServer(options, function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
