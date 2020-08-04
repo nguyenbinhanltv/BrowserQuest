@@ -7,17 +7,17 @@ var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
 var fs = require('fs');
+var path = require('path');
 
 var WS = {};
 
 module.exports = WS;
 
 var options = {
-    key: fs.readFileSync('./openssl/key.pem'),
-    cert: fs.readFileSync('./openssl/cert.pem')
+    key: fs.readFileSync(path.resolve('./server/js/openssl/key.pem')),
+    cert: fs.readFileSync(path.resolve('./server/js/openssl/cert.pem')),
+    passphrase: 'browserquest'
 };
-
-var options = openssl('openssl req -config csr.cnf -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout key.key -out certificate.crt');
 
 /**
  * Abstract Server and Connection classes
@@ -199,12 +199,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpsServer = https.createServer(opt = options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpsServer = https.createServer( app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpsServer = https.createServer(opt = options, function statusListener(request, response) {
+            this._httpsServer = https.createServer( function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
