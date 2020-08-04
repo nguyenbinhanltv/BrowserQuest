@@ -220,7 +220,7 @@ WS.WebsocketServer = Server.extend({
             });
         }
 
-        this._ioServer = new socketio(this._httpsServer(options));
+        this._ioServer = new socketio(this._httpsServer);
         this._ioServer.on('connection', function webSocketListener(socket) {
             log.info('Client socket connected from ' + socket.conn.remoteAddress);
             // Add remoteAddress property
