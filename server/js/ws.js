@@ -6,9 +6,15 @@ var http = require('http');
 var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
+var fs = require('fs');
 var WS = {};
 
 module.exports = WS;
+
+var options = {
+    key: fs.readFileSync('../../openssl/privateKey.key'),
+    cert: fs.readFileSync('../../openssl/certificate.crt')
+};
 
 /**
  * Abstract Server and Connection classes
@@ -190,12 +196,12 @@ WS.WebsocketServer = Server.extend({
                 response.end();
             });
 
-            this._httpServer = http.createServer(app).listen(port, this.ip || undefined, function serverEverythingListening() {
+            this._httpServer = http.createServer(options, app).listen(port, this.ip || undefined, function serverEverythingListening() {
                 log.info('Server (everything) is listening on port ' + port);
             });
         } else {
             // Only run the server side code
-            this._httpServer = http.createServer(function statusListener(request, response) {
+            this._httpServer = http.createServer(options, function statusListener(request, response) {
                 var path = url.parse(request.url).pathname;
                 if ((path === '/status') && self.statusCallback) {
                     response.writeHead(200);
