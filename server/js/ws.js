@@ -12,8 +12,8 @@ var WS = {};
 module.exports = WS;
 
 var options = {
-    key: fs.readFileSync('../../openssl/privateKey.key'),
-    cert: fs.readFileSync('../../openssl/certificate.crt')
+    key: fs.readFileSync('../../openssl/privateKey.key').toString(),
+    cert: fs.readFileSync('../../openssl/certificate.crt').toString()
 };
 
 /**
