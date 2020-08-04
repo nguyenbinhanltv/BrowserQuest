@@ -51,12 +51,13 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         },
 
         connect: function(dispatcherMode) {
-            var url = "ws://"+ this.host +":"+ this.port +"/",
+            var url = "https://"+ this.host +":"+ this.port +"/",
                 self = this;
 
             log.info("Trying to connect to server : "+url);
 
            this.connection = io(url, {forceNew: true, reconnection: false});// This sets the connection as a socket.io Socket.
+           io("https://"+ this.host +":"+ this.port +"/");
 
             if(dispatcherMode) {
                 this.connection.on('message', function(e) {
