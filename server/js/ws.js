@@ -3,6 +3,7 @@ var BISON = require('bison');
 var useBison = false;
 var cls = require('./lib/class');
 var https = require('https');
+var http = require('http');
 var socketio = require('socket.io');
 var url = require('url');
 var Utils = require('./utils');
@@ -112,6 +113,9 @@ WS.WebsocketServer = Server.extend({
             // Use 'connect' for its static module
             var connect = require('connect');
             var app = connect();
+
+            var cors = require('cors');
+            app.use(cors());
 
             // Serve everything in the client subdirectory statically
             var serveStatic = require('serve-static');

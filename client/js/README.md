@@ -130,7 +130,7 @@ updater.js
 Functions to update movement, aggro, zoning etc
 
 util.js
-Sets Smart Animating 
+Sets Smart Animating
 http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 and URL Parameters
 http://snipplr.com/view/19838/get-url-parameters/
