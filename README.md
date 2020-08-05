@@ -50,7 +50,7 @@ That means its working.  There should not be any warnings or errors.
 Using a browser, connect to port 8000 of the server entered above.  The
 BrowserQuest start page should appear, and the game should work.
 
-Deploying BrowserQuest
+Deploying BrowserQuest (Because requiment Nodejs 8 but server using Nodejs v 0.10. Should run at local!!!)
 ----------------------
 
 Currently, BrowserQuest can run on the following PAAS (Platform as a Service) providers:
