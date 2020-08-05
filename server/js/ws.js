@@ -114,9 +114,6 @@ WS.WebsocketServer = Server.extend({
             var connect = require('connect');
             var app = connect();
 
-            var cors = require('cors');
-            app.use(cors());
-
             // Serve everything in the client subdirectory statically
             var serveStatic = require('serve-static');
             app.use(serveStatic('client', {'index': ['index.html']}));
