@@ -12,7 +12,7 @@
     "log": "~1.4.0",
     "memcache": "~0.3.0",
     "morgan": "^1.5.0",
-    "redis": ">=0",
+    "redis": ">=3",
     "requirejs": ">=2",
     "sanitizer": "~0.1.2",
     "semver": ">=0",
