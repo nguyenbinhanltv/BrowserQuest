@@ -21,7 +21,7 @@
     "underscore": "~1.7.0"
   },
   "devDependencies": {
-    "mocha": ">=1",
+    "mocha": ">=10",
     "should": ">=1",
     "sinon": ">=1"
   },
